@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import HomeScreen from "./containers/HomeScreen";
 import ProfileScreen from "./containers/ProfileScreen";
 import SignInScreen from "./containers/SignInScreen";
@@ -96,15 +96,6 @@ const App = () => {
                       >
                         {(props) => <HomeScreen {...props} />}
                       </Stack.Screen>
-
-                      <Stack.Screen
-                        name="Profile"
-                        options={{
-                          title: "User Profile",
-                        }}
-                      >
-                        {() => <ProfileScreen />}
-                      </Stack.Screen>
                       <Stack.Screen
                         name="Room"
                         options={{
@@ -136,6 +127,33 @@ const App = () => {
                         options={{ title: "Settings", tabBarLabel: "Settings" }}
                       >
                         {() => <SettingsScreen setToken={setToken} />}
+                      </Stack.Screen>
+                    </Stack.Navigator>
+                  )}
+                </Tab.Screen>
+
+                <Tab.Screen
+                  name="Profile"
+                  options={{
+                    tabBarLabel: "Profile",
+                    tabBarIcon: ({ color, size }) => (
+                      <FontAwesome name="user" size={24} color={color} />
+                    ),
+                  }}
+                >
+                  {() => (
+                    <Stack.Navigator>
+                      <Stack.Screen
+                        name="Profile"
+                        options={{ title: "Profile", tabBarLabel: "Profile" }}
+                      >
+                        {(props) => (
+                          <ProfileScreen
+                            setToken={setToken}
+                            userToken={userToken}
+                            {...props}
+                          />
+                        )}
                       </Stack.Screen>
                     </Stack.Navigator>
                   )}

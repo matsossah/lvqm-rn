@@ -10,6 +10,7 @@ import {
   Dimensions,
 } from "react-native";
 import axios from "axios";
+import MapView from "react-native-maps";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -24,6 +25,7 @@ const RoomScreen = ({ route }) => {
         const response = await axios.get(
           `https://express-airbnb-api.herokuapp.com/rooms/${route.params.id}`
         );
+        console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

@@ -17,7 +17,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 const SignUpScreen = ({ setToken, navigation }) => {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("newnew");
+  const [username, setUsername] = useState("newPers");
   const [description, setDescription] = useState("Nouveau membre LVQM!");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -45,11 +45,12 @@ const SignUpScreen = ({ setToken, navigation }) => {
               password,
             }
           );
+          console.log(response.data);
           if (response.data.token) {
             setToken(response.data.token);
           }
         } catch (error) {
-          console.log(error.message);
+          console.log(error);
         }
       } else {
         alert("Les deux mots de passe doivent être identique");
